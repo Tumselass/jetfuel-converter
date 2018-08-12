@@ -1,0 +1,29 @@
+{
+  "units": {
+    "liter": {
+      "name": "Liter",
+      "factor": 1
+    },
+    "usg": {
+      "name": "US gallon",
+      "factor": 3.79
+    },
+    "impg": {
+      "name": "Imp gallon",
+      "factor": 4.55
+    }
+  },
+  "sg": {
+    "low": 0.76,
+    "high": 0.84
+  },
+  "acType": {
+    "b737": {
+      "unit": "kg",
+      "tanks": 3,
+      "left": 7800,
+      "right": 7800,
+      "center": 22000
+    }
+  }
+}
