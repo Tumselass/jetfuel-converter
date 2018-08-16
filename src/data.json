@@ -2,28 +2,43 @@
   "units": {
     "liter": {
       "name": "Liter",
-      "factor": 1
+      "factor": 1,
+      ".key": "liter"
     },
     "usg": {
       "name": "US gallon",
-      "factor": 3.79
+      "factor": 3.79,
+      ".key": "usg"
     },
     "impg": {
       "name": "Imp gallon",
-      "factor": 4.55
+      "factor": 4.55,
+      ".key": "impg"
     }
   },
   "sg": {
     "low": 0.76,
-    "high": 0.84
+    "high": 0.84,
+    ".key": "sg"
   },
-  "acType": {
-    "b737": {
+  "aircraftType": {
+    "b737ng": {
+      "name": "Boeing 737NG",
       "unit": "kg",
       "tanks": 3,
-      "left": 7800,
-      "right": 7800,
-      "center": 22000
+      "left": 3900,
+      "right": 3900,
+      "center": 13000,
+      ".key": "b737ng"
+    },
+    "a320neo": {
+      "name": "Airbus 320NEO",
+      "unit": "kg",
+      "tanks": 3,
+      "left": 3900,
+      "right": 3900,
+      "center": 22000,
+      ".key": "a320neo"
     }
   }
 }
