@@ -17,8 +17,8 @@
     }
   },
   "sg": {
-    "low": 0.76,
-    "high": 0.84,
+    "low": "76",
+    "high": "84",
     ".key": "sg"
   },
   "aircraftType": {

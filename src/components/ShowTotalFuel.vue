@@ -2,8 +2,9 @@
 
   <div>
     
-    {{ showConvertedUplift }}
-    hei
+    {{ showConvertedUplift.toFixed(1) }} {{ showConvertedUnit }}
+    {{ showConvertedSG.toFixed(1) }} kg
+
   </div>
   
 </template>
@@ -26,14 +27,25 @@ export default {
       type: Number
     },
     convertionUnit: {
-      required: false,
+      required: true,
       type: String,
+    },
+    sg: {
+      required: true,
+      type: String
     }
   },
 
   computed: {
     showConvertedUplift() {
       return this.uplift * this.unitTypes[this.convertionUnit].factor;
+    },
+    showConvertedUnit() {
+      return this.unitTypes[this.convertionUnit].name;
+    },
+    showConvertedSG() {
+      const sgAsFactor = Number(this.sg) / 100;
+      return this.uplift * sgAsFactor;
     }
   }
 }

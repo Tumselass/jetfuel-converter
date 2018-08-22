@@ -4,8 +4,9 @@
     <h1>The Awsome Jet Fuel Calculator</h1>
     <SelectAircraft @selectedAircraftKey="setSelectedAircraft"/>
     <SelectUplift @selectedUplift="setSelectedUplift" />
-    <SelectUnit @selectedUnit="setSelectedUnit" />
-    <ShowTotalFuel :uplift="selectedUplift" :convertionUnit="selectedConversionUnit" />
+    <SelectUnit @selectedUnit="setSelectedUnit" :defaultUnit="selectedConversionUnit" />
+    <ShowTotalFuel :sg="selectedSG" :uplift="selectedUplift" :convertionUnit="selectedConversionUnit" />
+    <SelectSG @selectedSG="setSelectedSG" :defaultSG="selectedSG" />
   </div>
   
 </template>
@@ -16,6 +17,7 @@ import SelectAircraft from './SelectAircraft';
 import SelectUplift from './SelectUplift';
 import SelectUnit from './SelectUnit';
 import ShowTotalFuel from './ShowTotalFuel';
+import SelectSG from './SelectSG';
 
 export default {
 
@@ -23,14 +25,16 @@ export default {
     SelectAircraft,
     SelectUplift,
     SelectUnit,
-    ShowTotalFuel
+    ShowTotalFuel,
+    SelectSG
   },
-  //!! for tett kobling mellom selectUplift og denne. Dersom default skal byttes må det gjøres i begge og det er ikke bra. Finn ny løsning
+  
   data() {
     return {
       selectedAircraft: '',
       selectedConversionUnit: 'liter',
-      selectedUplift: 0
+      selectedUplift: 0,
+      selectedSG: '80'
     }
   },
   
@@ -54,6 +58,13 @@ export default {
         throw new Error('Must be a string');
         }
       this.selectedConversionUnit = key;
+    },
+
+    setSelectedSG(sg) {
+      if (typeof sg !== 'string') {
+        throw new Error('Must be a string');
+        }
+      this.selectedSG = sg;
     }
   }
   

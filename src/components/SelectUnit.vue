@@ -29,13 +29,20 @@ export default {
   data() {
     return {
       unitTypes: sourceData.units,
-      selectedUnit: 'liter'
+      selectedUnit: this.defaultUnit
     }
   },
 
   methods: {
     emitSelectedUnit() {
       this.$emit('selectedUnit', this.selectedUnit);
+    }
+  },
+
+  props: {
+    defaultUnit: {
+      required: true,
+      type: String
     }
   }
 }
