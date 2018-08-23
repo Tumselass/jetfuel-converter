@@ -2,14 +2,16 @@
   
   <div>
     <select 
-      v-model="selectedAircraftKey"
+      
       @change="emitSelectedAircraftKey"
       >
 
       <option 
         v-for="aircraft in aircraftType"
         :key="aircraft['.key']"
-        :value="aircraft['.key']">
+        :value="aircraft['.key']"
+        :selected="aircraft['.key'] === selectedAircraftKey ? true : false"
+        >
         {{ aircraft.name }}
       </option>
 
@@ -27,13 +29,20 @@ export default {
   data() {
     return {
       aircraftType: sourceData.aircraftType,
-      selectedAircraftKey: ''
+      selectedAircraftKey: this.defaultAircraft
     }
   },
 
+  props: {
+    defaultAircraft: {
+      required: true,
+      type: String
+    }
+  },
+  // * Using value instead og v-model to have one option preselecteds
   methods: {
     emitSelectedAircraftKey(event) {
-      this.$emit('selectedAircraftKey', this.selectedAircraftKey);
+      this.$emit('selectedAircraftKey', event.target.value);
     }
   }
 }

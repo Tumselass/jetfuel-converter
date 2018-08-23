@@ -2,9 +2,17 @@
 
   <div>
     <h1>The Awsome Jet Fuel Calculator</h1>
-    <SelectAircraft @selectedAircraftKey="setSelectedAircraft"/>
+    <SelectAircraft 
+      @selectedAircraftKey="setSelectedAircraft" 
+      :defaultAircraft="selectedAircraft"
+      />
     <SelectUplift @selectedUplift="setSelectedUplift" />
     <SelectUnit @selectedUnit="setSelectedUnit" :defaultUnit="selectedConversionUnit" />
+    <ShowFuelTanks 
+      :aircraftType="selectedAircraft" 
+      :fuelUplift="selectedUplift"
+      :sg="selectedSG"
+      />
     <ShowTotalFuel :sg="selectedSG" :uplift="selectedUplift" :convertionUnit="selectedConversionUnit" />
     <SelectSG @selectedSG="setSelectedSG" :defaultSG="selectedSG" />
   </div>
@@ -18,6 +26,7 @@ import SelectUplift from './SelectUplift';
 import SelectUnit from './SelectUnit';
 import ShowTotalFuel from './ShowTotalFuel';
 import SelectSG from './SelectSG';
+import ShowFuelTanks from './ShowFuelTanks.vue';
 
 export default {
 
@@ -26,12 +35,13 @@ export default {
     SelectUplift,
     SelectUnit,
     ShowTotalFuel,
-    SelectSG
+    SelectSG,
+    ShowFuelTanks
   },
   
   data() {
     return {
-      selectedAircraft: '',
+      selectedAircraft: 'b737ng',
       selectedConversionUnit: 'liter',
       selectedUplift: 0,
       selectedSG: '80'

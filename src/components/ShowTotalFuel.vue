@@ -2,7 +2,7 @@
 
   <div>
     
-    {{ showConvertedUplift.toFixed(1) }} {{ showConvertedUnit }}
+    {{ showConvertedUplift.toFixed(1) }} liter
     {{ showConvertedSG.toFixed(1) }} kg
 
   </div>

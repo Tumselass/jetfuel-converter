@@ -22,6 +22,7 @@ export default {
   // TODO: Check for negative number and prevent it
   methods: {
     emitSelectedUplift(event) {
+      if (this.selectedUplift === '') return;
       this.$emit('selectedUplift', this.selectedUplift);
     }
   }
