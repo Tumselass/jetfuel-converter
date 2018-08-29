@@ -7,7 +7,7 @@
     right {{ fillTanks.right.toFixed(1) }}
 
   </div>
-  
+
 </template>
 
 <script>
@@ -15,16 +15,16 @@
 import sourceData from '@/data';
 
 export default {
-  
+
   data() {
     return {
-      centerOverflow: false
-    }
+      centerOverflow: false,
+    };
   },
-  
+
   computed: {
     aircraft() {
-      return sourceData.aircraftType[this.aircraftType]
+      return sourceData.aircraftType[this.aircraftType];
     },
     calculateKg() { // ! Duplicate with show total fuel
       const sgAsFactor = Number(this.sg) / 100;
@@ -37,44 +37,43 @@ export default {
       if (this.calculateKg > wingCapacity && this.calculateKg < totalCapacity) {
         this.centerOverflow = false;
         return {
-          left: left,
-          right: right,
-          center: this.calculateKg - wingCapacity
+          left,
+          right,
+          center: this.calculateKg - wingCapacity,
         };
       } else if (this.calculateKg > totalCapacity) {
         this.centerOverflow = true;
         return {
           left,
           right,
-          center
-        }
-      } else {
-        this.centerOverflow = false;
-        return {
-          left: this.calculateKg / 2,
-          right: this.calculateKg / 2,
-          center: 0
+          center,
         };
       }
-    }
+      this.centerOverflow = false;
+      return {
+        left: this.calculateKg / 2,
+        right: this.calculateKg / 2,
+        center: 0,
+      };
+    },
   },
 
   props: {
     aircraftType: {
       required: true,
-      type: String
+      type: String,
     },
     fuelUplift: {
       required: true,
-      type: Number
+      type: Number,
     },
     sg: {
       required: true,
-      type: String
-    }
-  }
-  
-}
+      type: String,
+    },
+  },
+
+};
 </script>
 
 <style scoped>
@@ -82,5 +81,4 @@ export default {
   color: red;
 }
 </style>
-
 

@@ -1,12 +1,12 @@
 <template>
-  
+
   <div>
-    
-    <input 
-      type="range" 
+
+    <input
+      type="range"
       v-model="selectedSG"
       @change="emitSelectedSG"
-      :min="sg.low" 
+      :min="sg.low"
       :max="sg.high"
       >
     sg 0.{{ selectedSG }}
@@ -20,35 +20,30 @@
 import sourceData from '@/data';
 
 export default {
-  
+
   data() {
     return {
       sg: sourceData.sg,
-      selectedSG: this.defaultSG
-    }
+      selectedSG: this.defaultSG,
+    };
   },
 
   methods: {
     emitSelectedSG() {
-      console.log('range');
       this.$emit('selectedSG', this.selectedSG);
     },
-    test() {
-      console.log('test');
-    }
   },
 
   props: {
     defaultSG: {
       required: true,
-      type: String
-    }
-  }
-}
+      type: String,
+    },
+  },
+};
 
 </script>
 
 <style scoped>
 </style>
-
 

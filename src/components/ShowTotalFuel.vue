@@ -1,12 +1,12 @@
 <template>
 
   <div>
-    
+
     {{ showConvertedUplift.toFixed(1) }} liter
     {{ showConvertedSG.toFixed(1) }} kg
 
   </div>
-  
+
 </template>
 
 <script>
@@ -14,17 +14,17 @@
 import sourceData from '@/data';
 
 export default {
-  
+
   data() {
     return {
       unitTypes: sourceData.units,
-    }
+    };
   },
 
   props: {
     uplift: {
       required: true,
-      type: Number
+      type: Number,
     },
     convertionUnit: {
       required: true,
@@ -32,8 +32,8 @@ export default {
     },
     sg: {
       required: true,
-      type: String
-    }
+      type: String,
+    },
   },
 
   computed: {
@@ -46,12 +46,11 @@ export default {
     showConvertedSG() {
       const sgAsFactor = Number(this.sg) / 100;
       return this.uplift * sgAsFactor;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
 </style>
-
 
