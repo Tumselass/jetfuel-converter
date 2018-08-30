@@ -2,10 +2,10 @@
 
   <div>
     <input
-      type="text"
-      pattern="[0-9]"
+      type="number"
       placeholder="Input Uplift"
       v-model.number="selectedUplift"
+      @keyup="emitSelectedUplift"
       @change="emitSelectedUplift"
       >
   </div>
@@ -24,8 +24,11 @@ export default {
   // TODO: Check for negative number and prevent it & change from number to text and sanatize the input to only include numbers
   methods: {
     emitSelectedUplift(event) {
-      if (this.selectedUplift === '') return;
-      this.$emit('selectedUplift', this.selectedUplift);
+      if (this.selectedUplift === '') {
+        this.$emit('selectedUplift', 0);
+      } else {
+        this.$emit('selectedUplift', this.selectedUplift);
+      }
     },
   },
 };
