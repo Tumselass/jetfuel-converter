@@ -16,8 +16,17 @@ export default {
 </script>
 
 <style>
+:root {
+  --main-text-color: rgba(129, 129, 129, 1);
+  --main-text-color-muted: rgba(129, 129, 129, 0.6);
+  --main-color: rgba(162, 162, 162, 1);
+  --accent-color: rgba(187, 187, 187, 1);
+  --selected-bg-color: rgba(243, 243, 243, 1);
+}
+
 body {
   font-size: 16px;
+  color: var(--main-text-color);
 }
 
 input,
@@ -26,6 +35,7 @@ select {
   font-family: inherit;
   border: none;
   text-align: center;
+  color: var(--main-text-color);
 }
 
 hr {
@@ -42,6 +52,6 @@ hr {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  line-height: 1.5rem;
 }
 </style>

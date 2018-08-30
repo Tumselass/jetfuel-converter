@@ -1,6 +1,6 @@
 <template>
 
-  <div>
+  <div class="tm-unit-select-bar">
     <span
       v-for="unit in unitTypes"
       :key="unit['.key']"
@@ -57,14 +57,19 @@ input[type="radio"] {
 }
 
 label {
-  color: #bfbfbf;
+  color: var(--main-text-color-muted);
   padding: 10px;
   border-radius: 2px;
+  cursor: pointer;
 }
 
 input[type="radio"]:checked + label {
-  color: #818181;
-  background: #f3f3f3;
+  color: var(--main-text-color);
+  background: var(--selected-bg-color);
+}
+
+.tm-unit-select-bar {
+  margin-top: 1.3rem;
 }
 </style>
 

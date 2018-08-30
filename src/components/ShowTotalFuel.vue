@@ -1,9 +1,9 @@
 <template>
 
   <div>
-
-    {{ showConvertedUplift.toFixed(1) }} liter
-    {{ showConvertedSG.toFixed(1) }} kg
+    <hr>
+    <div class="tm-total-kg">{{ showConvertedSG.toFixed(1) }} kg</div>
+    <div class="tm-total-liter">{{ showConvertedUplift.toFixed(1) }} liter</div>
 
   </div>
 
@@ -52,5 +52,8 @@ export default {
 </script>
 
 <style scoped>
+.tm-total-liter {
+  font-size: 0.9rem;
+}
 </style>
 
