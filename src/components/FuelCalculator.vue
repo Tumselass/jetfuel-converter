@@ -1,7 +1,7 @@
 <template>
 
   <div>
-
+    
     <div class="tm-card">
       <SelectAircraft
         @selectedAircraftKey="setSelectedAircraft"

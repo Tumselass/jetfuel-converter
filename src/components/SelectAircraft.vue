@@ -2,6 +2,7 @@
 
   <div>
     <select
+    class="tm-select-aircraft"
       @change.passive="emitSelectedAircraftKey"
       >
 
@@ -49,5 +50,8 @@ export default {
 </script>
 
 <style scoped>
+.tm-select-aircraft {
+  background-color: transparent;
+}
 </style>
 
