@@ -2,7 +2,7 @@
 
   <div>
     <select
-      @change="emitSelectedAircraftKey"
+      @change.passive="emitSelectedAircraftKey"
       >
 
       <option
