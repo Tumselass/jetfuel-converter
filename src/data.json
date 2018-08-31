@@ -35,9 +35,9 @@
       "name": "Airbus 320NEO",
       "unit": "kg",
       "tanks": 3,
-      "left": 4900,
-      "right": 4900,
-      "center": 22000,
+      "left": 6126,
+      "right": 6126,
+      "center": 6476,
       ".key": "a320neo"
     }
   }

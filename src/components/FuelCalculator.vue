@@ -41,6 +41,11 @@
         /> 
     </div>
 
+    <p class="tm-disclamer">
+      <span class="tm-disclamer-heading">Disclamer</span>
+      This is a hobby project made for personal use and not suitable for real life usage. I do not guarantee the quality of outputs or that the aircraft data being used is correct.
+      </p>
+
   </div>
 
 </template>
@@ -135,6 +140,18 @@ export default {
   margin: 15px auto;
   width: 95%;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.tm-disclamer {
+  color: var(--main-text-color-muted);
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  margin-top: 2rem;
+}
+
+.tm-disclamer-heading {
+  display: block;
+  font-weight: 600;
 }
 </style>
 
