@@ -1,21 +1,8 @@
 # jetfuel-converter
 
-## Project setup
-```
-npm install
-```
+A handy converter from gallons to liter with a visualization of kg in the fuel tanks. You can also specify the sg.  
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Disclamer
 
-### Lints and fixes files
-```
-npm run lint
-```
+This is a hobby project made for personal use and not suitable for real life usage. I do not guarantee the quality of outputs or that the aircraft data being used is correct.
