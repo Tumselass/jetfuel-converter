@@ -1,24 +1,29 @@
 {
   "units": {
     "liter": {
-      "name": "Liter",
+      "name": "Ltr",
       "factor": 1,
       ".key": "liter"
     },
     "usg": {
-      "name": "US gallon",
+      "name": "US.g",
       "factor": 3.79,
       ".key": "usg"
     },
     "impg": {
-      "name": "Imp gallon",
+      "name": "Imp.g",
       "factor": 4.55,
       ".key": "impg"
+    },
+    "kg": {
+      "name": "Kg",
+      "factor": 1,
+      ".key": "kg"
     }
   },
   "sg": {
-    "low": "76",
-    "high": "84",
+    "low": "760",
+    "high": "840",
     ".key": "sg"
   },
   "aircraftType": {

@@ -25,6 +25,7 @@
         :aircraftType="selectedAircraft"
         :fuelUplift="selectedUplift"
         :sg="selectedSG"
+        :convertionUnit="selectedConversionUnit"
         />
 
       <ShowTotalFuel 
@@ -76,7 +77,7 @@ export default {
       selectedAircraft: localStorage.getItem('aircraft') || 'b737ng',
       selectedConversionUnit: localStorage.getItem('unit') || 'liter',
       selectedUplift: 0,
-      selectedSG: localStorage.getItem('sg') || '80',
+      selectedSG: localStorage.getItem('sg') || '800',
     };
   },
 

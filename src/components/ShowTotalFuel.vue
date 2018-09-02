@@ -2,8 +2,15 @@
 
   <div>
     <hr>
-    <div class="tm-total-kg">{{ showConvertedSG.toFixed(1) }} kg</div>
-    <div class="tm-total-liter">{{ showConvertedUplift.toFixed(1) }} liter</div>
+    <div 
+      class="tm-total-kg">
+      {{ showConvertedSG.toFixed(1) }} kg
+    </div>
+
+    <div 
+      class="tm-total-liter">
+      {{ showConvertedUplift.toFixed(1) }} liter
+    </div>
 
   </div>
 
@@ -38,13 +45,17 @@ export default {
 
   computed: {
     showConvertedUplift() {
+      if (this.convertionUnit === 'kg') {
+        return this.uplift / (Number(this.sg) / 100);
+      }
       return this.uplift * this.unitTypes[this.convertionUnit].factor;
     },
     showConvertedUnit() {
       return this.unitTypes[this.convertionUnit].name;
     },
     showConvertedSG() {
-      const sgAsFactor = Number(this.sg) / 100;
+      if (this.convertionUnit === 'kg') return this.uplift;
+      const sgAsFactor = Number(this.sg) / 1000;
       return this.uplift * sgAsFactor;
     },
   },

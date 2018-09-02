@@ -43,7 +43,8 @@ export default {
       return sourceData.aircraftType[this.aircraftType];
     },
     calculateKg() { // ! Duplicate with show total fuel
-      const sgAsFactor = Number(this.sg) / 100;
+      if (this.convertionUnit === 'kg') return this.fuelUplift;
+      const sgAsFactor = Number(this.sg) / 1000;
       return this.fuelUplift * sgAsFactor;
     },
     fillTanks() {
@@ -100,6 +101,10 @@ export default {
       required: true,
       type: String,
     },
+    convertionUnit: {
+      required: true,
+      type: String
+    }
   },
 
 };
