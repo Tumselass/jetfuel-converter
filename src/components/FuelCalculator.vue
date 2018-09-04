@@ -2,25 +2,27 @@
 
   <div>
     
-    <div class="tm-card">
+    <div class="tm_card">
       <SelectAircraft
         @selectedAircraftKey="setSelectedAircraft"
         :defaultAircraft="selectedAircraft"
         />
     </div>
     
-    <div class="tm-card">
+    <div class="tm_card">
       <SelectUplift 
         @selectedUplift="setSelectedUplift" 
         />
+
     <hr>
+
       <SelectUnit 
         @selectedUnit="setSelectedUnit" 
         :defaultUnit="selectedConversionUnit" 
         />
     </div>
 
-    <div class="tm-card">
+    <div class="tm_card">
       <ShowFuelTanks
         :aircraftType="selectedAircraft"
         :fuelUplift="selectedUplift"
@@ -35,15 +37,15 @@
         />
     </div>
     
-    <div class="tm-card">
+    <div class="tm_card">
       <SelectSG 
         @selectedSG="setSelectedSG" 
         :defaultSG="selectedSG" 
         /> 
     </div>
 
-    <p class="tm-disclamer">
-      <span class="tm-disclamer-heading">Disclamer</span>
+    <p class="tm_disclamer">
+      <span class="tm_disclamer-heading">Disclamer</span>
       This is a hobby project made for personal use and not suitable for real life usage. I do not guarantee the quality of outputs or that the aircraft data being used is correct.
       </p>
 
@@ -53,12 +55,15 @@
 
 <script>
 
+import helpers from '@/helpers/validation';
 import SelectAircraft from './SelectAircraft';
 import SelectUplift from './SelectUplift';
 import SelectUnit from './SelectUnit';
 import ShowTotalFuel from './ShowTotalFuel';
 import SelectSG from './SelectSG';
 import ShowFuelTanks from './ShowFuelTanks.vue';
+
+const { validateString, validateNumber } = helpers;
 
 export default {
 
@@ -90,41 +95,37 @@ export default {
   },
 
   methods: {
-    setSelectedAircraft(key) {
-      if (typeof key !== 'string') {
-        throw new Error('Must be a string');
-      }
-      this.selectedAircraft = key;
-      this.setLocalStorage('aircraft', key);
-    },
-
-    setSelectedUplift(uplift) {
-      if (typeof uplift !== 'number') {
-        throw new Error('Uplift must be a number');
-      }
-      this.selectedUplift = uplift;
-      this.setLocalStorage('uplift', uplift);
-    },
-
-    setSelectedUnit(key) {
-      if (typeof key !== 'string') {
-        throw new Error('Must be a string');
-      }
-      this.selectedConversionUnit = key;
-      this.setLocalStorage('unit', key);
-    },
-
-    setSelectedSG(sg) {
-      if (typeof sg !== 'string') {
-        throw new Error('Must be a string');
-      }
-      this.selectedSG = sg;
-      this.setLocalStorage('sg', sg);
-    },
-
     setLocalStorage(key, value) {
       if (this.hasLocalStorage) {
         localStorage.setItem(key, value)
+      }
+    },
+
+    setSelectedAircraft(key) {
+      if (validateString(key)) {
+        this.selectedAircraft = key;
+        this.setLocalStorage('aircraft', key);
+      }
+    },
+
+    setSelectedUplift(uplift) {
+      if (validateNumber(uplift)) {
+        this.selectedUplift = uplift;
+        this.setLocalStorage('uplift', uplift);
+      }
+    },
+
+    setSelectedUnit(key) {
+      if (validateString(key)) {
+        this.selectedConversionUnit = key;
+        this.setLocalStorage('unit', key);
+      }
+    },
+
+    setSelectedSG(sg) {
+      if (validateString(sg)) {
+        this.selectedSG = sg;
+        this.setLocalStorage('sg', sg);
       }
     }
   },
@@ -133,24 +134,24 @@ export default {
 </script>
 
 <style scoped>
-.tm-card {
+.tm_card {
   background-color: #fff;
   border: 1px solid #ececec;
   border-radius: 2px;
   padding: 20px 0;
   margin: 15px auto;
   width: 95%;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05), 0 3px 6px rgba(0, 0, 0, 0.12);
 }
 
-.tm-disclamer {
+.tm_disclamer {
   color: var(--main-text-color-muted);
   font-size: 0.8rem;
   line-height: 1.2rem;
   margin-top: 2rem;
 }
 
-.tm-disclamer-heading {
+.tm_disclamer-heading {
   display: block;
   font-weight: 600;
 }

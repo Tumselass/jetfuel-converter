@@ -1,11 +1,14 @@
 <template>
 
-  <div class="tm-unit-select-bar">
+  <div class="tm_unit-select-bar">
+
     <span
       v-for="unit in unitTypes"
       :key="unit['.key']"
       >
+
       <input
+      class="tm_unit-select-input"
       :value="unit['.key']"
       v-model="selectedUnit"
       type="radio"
@@ -13,7 +16,16 @@
       :id="unit['.key']"
       @change="emitSelectedUnit"
       >
-      <label :for="unit['.key']">{{ unit.name }}</label>
+
+      <label
+        class="tm_unit-select-label"
+        :for="unit['.key']"
+        >
+
+        {{ unit.name }}
+
+      </label>
+      
     </span>
 
   </div>
@@ -50,25 +62,25 @@ export default {
 </script>
 
 <style scoped>
-input[type="radio"] {
+.tm_unit-select-input {
   position: absolute;
   visibility: hidden;
   display: none;
 }
 
-label {
+.tm_unit-select-label {
   color: var(--main-text-color-muted);
   padding: 10px;
   border-radius: 2px;
   cursor: pointer;
 }
 
-input[type="radio"]:checked + label {
+.tm_unit-select-input:checked + label {
   color: var(--main-text-color);
   background: var(--selected-bg-color);
 }
 
-.tm-unit-select-bar {
+.tm_unit-select-bar {
   margin-top: 1.3rem;
 }
 </style>

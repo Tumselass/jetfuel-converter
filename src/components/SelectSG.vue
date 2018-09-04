@@ -7,7 +7,7 @@
     </div>
 
     <input
-      class="tm-sg-slider"
+      class="tm_sg-slider"
       type="range"
       v-model="selectedSG"
       @change="emitSelectedSG"
@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style scoped>
-.tm-sg-slider {
+.tm_sg-slider {
   -webkit-appearance: none;
   height: 4px;
   width: 70%;
@@ -61,7 +61,7 @@ export default {
   transition: opacity 0.2s;
 }
 
-.tm-sg-slider::-webkit-slider-thumb {
+.tm_sg-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 29px;
@@ -72,7 +72,7 @@ export default {
   cursor: pointer;
 }
 
-.tm-sg-slider::-moz-range-thumb {
+.tm_sg-slider::-moz-range-thumb {
   width: 29px;
   height: 29px;
   border-radius: 50%;
