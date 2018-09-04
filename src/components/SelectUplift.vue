@@ -22,15 +22,15 @@ export default {
       selectedUplift: null, // default value
     };
   },
-  
+
   methods: {
-    emitSelectedUplift(event) {
+    emitSelectedUplift() {
       if (this.selectedUplift === '' || null) {
         this.$emit('selectedUplift', 0);
       } else {
         this.$emit('selectedUplift', this.selectedUplift);
       }
-    }
+    },
   },
 };
 

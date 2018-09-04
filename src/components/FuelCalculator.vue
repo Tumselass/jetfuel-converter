@@ -1,47 +1,41 @@
 <template>
 
   <div>
-    
+
     <div class="tm_card">
       <SelectAircraft
         @selectedAircraftKey="setSelectedAircraft"
         :defaultAircraft="selectedAircraft"
         />
     </div>
-    
+
     <div class="tm_card">
-      <SelectUplift 
-        @selectedUplift="setSelectedUplift" 
+      <SelectUplift
+        @selectedUplift="setSelectedUplift"
         />
 
     <hr>
 
-      <SelectUnit 
-        @selectedUnit="setSelectedUnit" 
-        :defaultUnit="selectedConversionUnit" 
+      <SelectUnit
+        @selectedUnit="setSelectedUnit"
+        :defaultUnit="selectedConversionUnit"
         />
     </div>
 
     <div class="tm_card">
-      <ShowFuelTanks
-        :aircraftType="selectedAircraft"
-        :fuelUplift="selectedUplift"
+      <ShowTotalFuel
         :sg="selectedSG"
+        :uplift="selectedUplift"
         :convertionUnit="selectedConversionUnit"
-        />
-
-      <ShowTotalFuel 
-        :sg="selectedSG" 
-        :uplift="selectedUplift" 
-        :convertionUnit="selectedConversionUnit" 
+        :aircraftType="selectedAircraft"
         />
     </div>
-    
+
     <div class="tm_card">
-      <SelectSG 
-        @selectedSG="setSelectedSG" 
-        :defaultSG="selectedSG" 
-        /> 
+      <SelectSG
+        @selectedSG="setSelectedSG"
+        :defaultSG="selectedSG"
+        />
     </div>
 
     <p class="tm_disclamer">
@@ -61,7 +55,6 @@ import SelectUplift from './SelectUplift';
 import SelectUnit from './SelectUnit';
 import ShowTotalFuel from './ShowTotalFuel';
 import SelectSG from './SelectSG';
-import ShowFuelTanks from './ShowFuelTanks.vue';
 
 const { validateString, validateNumber } = helpers;
 
@@ -73,7 +66,6 @@ export default {
     SelectUnit,
     ShowTotalFuel,
     SelectSG,
-    ShowFuelTanks,
   },
 
   data() {
@@ -87,7 +79,7 @@ export default {
   },
 
   beforeMount() {
-    if (typeof(Storage) !== 'undefined') {
+    if (typeof (Storage) !== 'undefined') {
       this.hasLocalStorage = true;
     } else {
       this.hasLocalStorage = false;
@@ -97,7 +89,7 @@ export default {
   methods: {
     setLocalStorage(key, value) {
       if (this.hasLocalStorage) {
-        localStorage.setItem(key, value)
+        localStorage.setItem(key, value);
       }
     },
 
@@ -127,7 +119,7 @@ export default {
         this.selectedSG = sg;
         this.setLocalStorage('sg', sg);
       }
-    }
+    },
   },
 
 };

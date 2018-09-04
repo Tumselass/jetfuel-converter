@@ -4,21 +4,21 @@
 
     <div class="tm_tank tm_tank-lr">
       <span class="tm_tank-total">
-        {{ fillTanks.left.toFixed(1) }}
+        {{ fillTanks.left }}
       </span>
       <div class="tm_tank-content" :style="{ height: tankFillPercent.left }"></div>
     </div>
 
     <div class="tm_tank tm_tank-center">
       <span class="tm_tank-total" :class="{ 'red-text': centerOverflow }">
-        {{ fillTanks.center.toFixed(1) }}
+        {{ fillTanks.center }}
       </span>
       <div class="tm_tank-content" :class="{ 'red-fill': centerOverflow }" :style="{ height: tankFillPercent.center }"></div>
     </div>
 
     <div class="tm_tank tm_tank-lr">
       <span class="tm_tank-total">
-        {{ fillTanks.right.toFixed(1) }}
+        {{ fillTanks.right }}
       </span>
       <div class="tm_tank-content" :style="{ height: tankFillPercent.right }"></div>
     </div>
@@ -42,23 +42,18 @@ export default {
     aircraft() {
       return sourceData.aircraftType[this.aircraftType];
     },
-    calculateKg() { // ! Duplicate with show total fuel
-      if (this.convertionUnit === 'kg') return this.fuelUplift;
-      const sgAsFactor = Number(this.sg) / 1000;
-      return this.fuelUplift * sgAsFactor;
-    },
     fillTanks() {
       const { left, right, center } = this.aircraft;
       const wingCapacity = left + right;
       const totalCapacity = wingCapacity + center;
-      if (this.calculateKg > wingCapacity && this.calculateKg < totalCapacity) {
+      if (this.fuelUplift > wingCapacity && this.fuelUplift < totalCapacity) {
         this.centerOverflow = false;
         return {
           left,
           right,
-          center: this.calculateKg - wingCapacity,
+          center: this.fuelUplift - wingCapacity,
         };
-      } else if (this.calculateKg > totalCapacity) {
+      } else if (this.fuelUplift > totalCapacity) {
         this.centerOverflow = true;
         return {
           left,
@@ -68,8 +63,8 @@ export default {
       }
       this.centerOverflow = false;
       return {
-        left: this.calculateKg / 2,
-        right: this.calculateKg / 2,
+        left: this.fuelUplift / 2,
+        right: this.fuelUplift / 2,
         center: 0,
       };
     },
@@ -77,15 +72,15 @@ export default {
       return {
         left: this.calculatePercent('left'),
         right: this.calculatePercent('right'),
-        center: this.calculatePercent('center')
-      }
-    }
+        center: this.calculatePercent('center'),
+      };
+    },
   },
 
   methods: {
     calculatePercent(tank) {
-      return (this.fillTanks[tank] / this.aircraft[tank] * 100).toFixed(0) + '%'
-    }
+      return `${(this.fillTanks[tank] / this.aircraft[tank] * 100).toFixed(0)}%`;
+    },
   },
 
   props: {
@@ -97,14 +92,6 @@ export default {
       required: true,
       type: Number,
     },
-    sg: {
-      required: true,
-      type: String,
-    },
-    convertionUnit: {
-      required: true,
-      type: String
-    }
   },
 
 };

@@ -1,15 +1,21 @@
 <template>
 
   <div>
+    <ShowFuelTanks
+        :aircraftType="aircraftType"
+        :fuelUplift="calculateTotalKg"
+        />
+
     <hr>
-    <div 
+
+    <div
       class="tm_total-kg">
-      {{ showConvertedSG.toFixed(1) }} kg
+      {{ calculateTotalKg }} kg
     </div>
 
-    <div 
+    <div
       class="tm_total-liter">
-      {{ showConvertedUplift.toFixed(1) }} liter
+      {{ calculateTotalLiter }} liter
     </div>
 
   </div>
@@ -17,10 +23,14 @@
 </template>
 
 <script>
-
 import sourceData from '@/data';
+import ShowFuelTanks from './ShowFuelTanks.vue';
 
 export default {
+
+  components: {
+    ShowFuelTanks,
+  },
 
   data() {
     return {
@@ -29,6 +39,10 @@ export default {
   },
 
   props: {
+    aircraftType: {
+      required: true,
+      type: String,
+    },
     uplift: {
       required: true,
       type: Number,
@@ -44,19 +58,26 @@ export default {
   },
 
   computed: {
-    showConvertedUplift() {
+    sgAsFactor() {
+      return Number(this.sg) / 1000;
+    },
+    calculateTotalLiter() {
+      let liter;
       if (this.convertionUnit === 'kg') {
-        return this.uplift / (Number(this.sg) / 100);
+        liter = this.uplift / this.sgAsFactor;
+      } else {
+        liter = this.uplift * this.unitTypes[this.convertionUnit].factor;
       }
-      return this.uplift * this.unitTypes[this.convertionUnit].factor;
+      return Math.round(liter);
     },
-    showConvertedUnit() {
-      return this.unitTypes[this.convertionUnit].name;
-    },
-    showConvertedSG() {
-      if (this.convertionUnit === 'kg') return this.uplift;
-      const sgAsFactor = Number(this.sg) / 1000;
-      return this.uplift * sgAsFactor;
+    calculateTotalKg() {
+      let kg;
+      if (this.convertionUnit === 'kg') {
+        kg = this.uplift;
+      } else {
+        kg = this.calculateTotalLiter * this.sgAsFactor;
+      }
+      return Math.round(kg);
     },
   },
 };
