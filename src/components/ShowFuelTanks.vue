@@ -46,6 +46,7 @@ export default {
       const { left, right, center } = this.aircraft;
       const wingCapacity = left + right;
       const totalCapacity = wingCapacity + center;
+      
       if (this.fuelUplift > wingCapacity && this.fuelUplift < totalCapacity) {
         this.centerOverflow = false;
         return {
