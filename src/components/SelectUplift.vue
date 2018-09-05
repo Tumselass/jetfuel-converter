@@ -6,7 +6,7 @@
       pattern="[0-9]"
       placeholder="Uplift"
       v-model.number="selectedUplift"
-      @keyup="emitSelectedUplift"
+      @keyup.numbers="emitSelectedUplift"
       @change="emitSelectedUplift"
       >
   </div>

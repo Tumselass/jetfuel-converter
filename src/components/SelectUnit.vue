@@ -14,10 +14,11 @@
       type="radio"
       :name="unit['.key']"
       :id="unit['.key']"
-      @change="emitSelectedUnit"
       >
 
       <label
+        tabindex="0"
+        @keyup.13.32="selectUnitByLabel(unit['.key'])"
         class="tm_unit-select-label"
         :for="unit['.key']"
         >
@@ -45,10 +46,16 @@ export default {
     };
   },
 
-  methods: {
-    emitSelectedUnit() {
+  watch: {
+    selectedUnit() {
       this.$emit('selectedUnit', this.selectedUnit);
-    },
+    }
+  },
+
+  methods: {
+    selectUnitByLabel(label) {
+      this.selectedUnit = label;
+    }
   },
 
   props: {
