@@ -1,6 +1,7 @@
 <template>
 
   <div>
+    <div class="tm-section-description">Select Aircraft</div>
     <select
     class="tm_select-aircraft"
       @change.passive="emitSelectedAircraftKey"
@@ -50,8 +51,14 @@ export default {
 </script>
 
 <style scoped>
+.tm-section-description {
+  margin-bottom: 0.6rem;
+  color: var(--main-text-color-muted);
+}
+
 .tm_select-aircraft {
   background-color: transparent;
+  color: var(--main-color);
 }
 </style>
 

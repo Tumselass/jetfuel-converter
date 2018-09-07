@@ -3,6 +3,7 @@
   <div class="tm_unit-select-bar">
 
     <span
+    class="tm_unit-select-container"
       v-for="unit in unitTypes"
       :key="unit['.key']"
       >
@@ -69,6 +70,16 @@ export default {
 </script>
 
 <style scoped>
+.tm_unit-select-container {
+  display: inline-block;
+  margin-left: 0.4rem;
+  margin-right: 0.4rem;
+}
+
+.tm_unit-select-container:last-child {
+  margin-top: 1rem;
+}
+
 .tm_unit-select-input {
   position: absolute;
   visibility: hidden;
@@ -83,12 +94,13 @@ export default {
 }
 
 .tm_unit-select-input:checked + label {
-  color: var(--main-text-color);
+  color: var(--main-color);
   background: var(--selected-bg-color);
 }
 
 .tm_unit-select-bar {
-  margin-top: 1.3rem;
+  margin: 1.3rem auto 0 auto;
+  max-width: 380px;
 }
 </style>
 

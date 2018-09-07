@@ -19,9 +19,9 @@ export default {
 :root {
   --main-text-color: rgba(129, 129, 129, 1);
   --main-text-color-muted: rgba(129, 129, 129, 0.6);
-  --main-color: rgba(162, 162, 162, 1);
-  --accent-color: rgba(187, 187, 187, 1);
-  --selected-bg-color: rgba(243, 243, 243, 1);
+  --main-color: #40c9a2;
+  --accent-color: #77cbb9;
+  --selected-bg-color: rgba(119, 203, 185, 0.3);
 }
 
 body {

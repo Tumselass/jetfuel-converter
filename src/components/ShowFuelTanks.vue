@@ -5,6 +5,7 @@
     <div class="tm_tank tm_tank-lr">
       <span class="tm_tank-total">
         {{ fillTanks.left }}
+        <span class="tm_tank-unit">kg</span> 
       </span>
       <div class="tm_tank-content" :style="{ height: tankFillPercent.left }"></div>
     </div>
@@ -12,6 +13,7 @@
     <div class="tm_tank tm_tank-center">
       <span class="tm_tank-total" :class="{ 'red-text': centerOverflow }">
         {{ fillTanks.center }}
+        <span class="tm_tank-unit">kg</span>
       </span>
       <div class="tm_tank-content" :class="{ 'red-fill': centerOverflow }" :style="{ height: tankFillPercent.center }"></div>
     </div>
@@ -19,6 +21,7 @@
     <div class="tm_tank tm_tank-lr">
       <span class="tm_tank-total">
         {{ fillTanks.right }}
+        <span class="tm_tank-unit">kg</span>
       </span>
       <div class="tm_tank-content" :style="{ height: tankFillPercent.right }"></div>
     </div>
@@ -108,9 +111,9 @@ export default {
 
 .tm_tank {
   position: relative;
-  border-bottom: 1px solid rgba(216, 216, 216, 1);
-  border-left: 1px solid rgba(216, 216, 216, 1);
-  border-right: 1px solid rgba(216, 216, 216, 1);
+  border-bottom: 1px solid var(--accent-color);
+  border-left: 1px solid var(--accent-color);
+  border-right: 1px solid var(--accent-color);
   flex: 0 1 91px;
   display: flex;
   flex-direction: column;
@@ -133,7 +136,11 @@ export default {
   bottom: 0;
   left: 1px;
   width: calc(100% - 2px);
-  background-color: rgba(243, 243, 243, 1);
+  background-color: var(--selected-bg-color);
+}
+
+.tm_tank-unit {
+  font-size: 0.8rem;
 }
 
 .tm_tank-total {

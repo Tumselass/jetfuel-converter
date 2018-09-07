@@ -87,5 +87,9 @@ export default {
 .tm_total-liter {
   font-size: 0.9rem;
 }
+
+.tm_total-kg {
+  font-size: 1.5rem;
+}
 </style>
 

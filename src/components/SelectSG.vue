@@ -50,6 +50,7 @@ export default {
 
 <style scoped>
 .tm_sg-slider {
+  margin-top: 1.6rem;
   -webkit-appearance: none;
   height: 4px;
   width: 70%;

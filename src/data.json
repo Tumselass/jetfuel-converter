@@ -1,22 +1,22 @@
 {
   "units": {
-    "liter": {
-      "name": "Ltr",
-      "factor": 1,
-      ".key": "liter"
-    },
     "usg": {
-      "name": "US.g",
+      "name": "US gallon",
       "factor": 3.79,
       ".key": "usg"
     },
+    "liter": {
+      "name": "Liter",
+      "factor": 1,
+      ".key": "liter"
+    },
     "impg": {
-      "name": "Imp.g",
+      "name": "Imp gallon",
       "factor": 4.55,
       ".key": "impg"
     },
     "kg": {
-      "name": "Kg",
+      "name": "Kilogram",
       "factor": 1,
       ".key": "kg"
     }
