@@ -27,6 +27,8 @@ export default {
 body {
   font-size: 16px;
   color: var(--main-text-color);
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 input,
