@@ -42,7 +42,7 @@
       <span class="tm_disclamer-heading">Disclamer</span>
       This is a hobby project made for personal use and not suitable for real life usage. I do not guarantee the quality of outputs or that the aircraft data being used is correct.
       <br>
-      v.0.5.0
+      v.0.5.1
       </p>
 
   </div>

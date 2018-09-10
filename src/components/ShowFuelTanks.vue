@@ -57,7 +57,7 @@ export default {
           right,
           center: this.fuelUplift - wingCapacity,
         };
-      } else if (this.fuelUplift > totalCapacity) {
+      } else if (this.fuelUplift >= totalCapacity) {
         this.centerOverflow = true;
         return {
           left,
