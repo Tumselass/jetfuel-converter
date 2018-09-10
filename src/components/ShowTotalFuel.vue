@@ -4,6 +4,7 @@
     <ShowFuelTanks
         :aircraftType="aircraftType"
         :fuelUplift="calculateTotalKg"
+        :sg="sgAsFactor"
         />
 
     <hr>
@@ -59,7 +60,7 @@ export default {
 
   computed: {
     sgAsFactor() {
-      return Number(this.sg) / 1000;
+      return Number(this.sg) / 1000; 
     },
     calculateTotalLiter() {
       let liter;

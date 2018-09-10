@@ -76,7 +76,7 @@ export default {
       selectedAircraft: localStorage.getItem('aircraft') || 'b737ng',
       selectedConversionUnit: localStorage.getItem('unit') || 'liter',
       selectedUplift: 0,
-      selectedSG: localStorage.getItem('sg') || '800',
+      selectedSG: localStorage.getItem('sg') || '804',
     };
   },
 
@@ -93,6 +93,10 @@ export default {
       if (this.hasLocalStorage) {
         localStorage.setItem(key, value);
       }
+    },
+
+    sgAsFactor() {
+      return parseInt(this.selectedSG) / 1000;
     },
 
     setSelectedAircraft(key) {

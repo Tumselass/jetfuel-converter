@@ -45,8 +45,17 @@ export default {
     aircraft() {
       return sourceData.aircraftType[this.aircraftType];
     },
-    fillTanks() {
+    fuelCapacityAsKg() {
       const { left, right, center } = this.aircraft;
+      
+      return {
+        left: Math.round(left * this.sg),
+        right: Math.round(right * this.sg),
+        center: Math.round(center * this.sg)
+      }
+    },
+    fillTanks() {
+      const { left, right, center } = this.fuelCapacityAsKg;
       const wingCapacity = left + right;
       const totalCapacity = wingCapacity + center;
       
@@ -83,7 +92,7 @@ export default {
 
   methods: {
     calculatePercent(tank) {
-      return `${(this.fillTanks[tank] / this.aircraft[tank] * 100).toFixed(0)}%`;
+      return `${(this.fillTanks[tank] / this.fuelCapacityAsKg[tank] * 100).toFixed(0)}%`;
     },
   },
 
@@ -96,6 +105,10 @@ export default {
       required: true,
       type: Number,
     },
+    sg: {
+      required: true,
+      type: Number
+    }
   },
 
 };

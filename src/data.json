@@ -22,6 +22,7 @@
     }
   },
   "sg": {
+    "default": "804",
     "low": "760",
     "high": "840",
     ".key": "sg"
@@ -29,20 +30,20 @@
   "aircraftType": {
     "b737ng": {
       "name": "Boeing 737NG",
-      "unit": "kg",
+      "unit": "liter",
       "tanks": 3,
-      "left": 3900,
-      "right": 3900,
-      "center": 13000,
+      "left": 4851,
+      "right": 4851,
+      "center": 16169,
       ".key": "b737ng"
     },
     "a320neo": {
       "name": "Airbus 320NEO",
-      "unit": "kg",
+      "unit": "liter",
       "tanks": 3,
-      "left": 6126,
-      "right": 6126,
-      "center": 6476,
+      "left": 7619,
+      "right": 7619,
+      "center": 8055,
       ".key": "a320neo"
     }
   }
