@@ -42,7 +42,7 @@
       <span class="tm_disclamer-heading">Disclamer</span>
       This is a hobby project made for personal use and not suitable for real life usage. I do not guarantee the quality of outputs or that the aircraft data being used is correct.
       <br>
-      v.0.5.1
+      v.{{ version }}
       </p>
 
   </div>
@@ -51,6 +51,7 @@
 
 <script>
 
+import {version} from '../../package.json';
 import helpers from '@/helpers/validation';
 import SelectAircraft from './SelectAircraft';
 import SelectUplift from './SelectUplift';
@@ -77,6 +78,7 @@ export default {
       selectedConversionUnit: localStorage.getItem('unit') || 'liter',
       selectedUplift: 0,
       selectedSG: localStorage.getItem('sg') || '804',
+      version: version
     };
   },
 
