@@ -37,19 +37,25 @@
 <script>
 
 import sourceData from '@/data';
+import setLocalStorage from '../mixins/setLocalStorage';
 
 export default {
+
+  mixins: [
+    setLocalStorage
+  ],
 
   data() {
     return {
       unitTypes: sourceData.units,
-      selectedUnit: this.defaultUnit,
+      selectedUnit: this.$store.state.inputUnit['.key'],
     };
   },
 
   watch: {
     selectedUnit() {
-      this.$emit('selectedUnit', this.selectedUnit);
+      this.$store.commit('setInputUnit', this.unitTypes[this.selectedUnit]);
+      this.setLocalStorage('unit', JSON.stringify(this.unitTypes[this.selectedUnit]));
     }
   },
 
@@ -57,13 +63,6 @@ export default {
     selectUnitByLabel(label) {
       this.selectedUnit = label;
     }
-  },
-
-  props: {
-    defaultUnit: {
-      required: true,
-      type: String,
-    },
   },
 };
 

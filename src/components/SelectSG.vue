@@ -10,7 +10,7 @@
       class="tm_sg-slider"
       type="range"
       v-model="selectedSG"
-      @change="emitSelectedSG"
+      @change="saveSelectedSG"
       :min="sg.low"
       :max="sg.high"
       >
@@ -22,26 +22,26 @@
 <script>
 
 import sourceData from '@/data';
+import setLocalStorage from '../mixins/setLocalStorage';
 
 export default {
+
+  mixins: [
+    setLocalStorage
+  ],
 
   data() {
     return {
       sg: sourceData.sg,
-      selectedSG: this.defaultSG,
+      selectedSG: this.$store.state.selectedSg,
     };
   },
 
   methods: {
-    emitSelectedSG() {
-      this.$emit('selectedSG', this.selectedSG);
-    },
-  },
-
-  props: {
-    defaultSG: {
-      required: true,
-      type: String,
+    saveSelectedSG() {
+      this.$store.commit('setSelectedSg', this.selectedSG);
+      this.setLocalStorage('sg', this.selectedSG);
+      
     },
   },
 };

@@ -6,14 +6,15 @@
       pattern="[0-9]"
       placeholder="Uplift"
       v-model.number="selectedUplift"
-      @keyup.numbers="emitSelectedUplift"
-      @change="emitSelectedUplift"
+      @keyup.numbers="saveSelectedUplift"
+      @change="saveSelectedUplift"
       >
   </div>
 
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 
 export default {
 
@@ -24,18 +25,18 @@ export default {
   },
 
   methods: {
-    emitSelectedUplift() {
+    ...mapMutations([
+      'setSelectedUplift'
+    ]),
+    saveSelectedUplift() {
       if (this.selectedUplift === '' || null) {
-        this.$emit('selectedUplift', 0);
+        this.setSelectedUplift(0);
       } else {
-        this.$emit('selectedUplift', this.selectedUplift);
+        this.setSelectedUplift(this.selectedUplift);
       }
     },
   },
 };
 
 </script>
-
-<style scoped>
-</style>
 

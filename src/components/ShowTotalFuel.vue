@@ -1,22 +1,25 @@
 <template>
 
   <div>
-    <ShowFuelTanks
-        :aircraftType="aircraftType"
-        :fuelUplift="calculateTotalKg"
-        :sg="sgAsFactor"
-        />
+    <ShowFuelTanks />
 
     <hr>
 
     <div
+      v-if="displayUnit === 'kg'"
       class="tm_total-kg">
-      {{ calculateTotalKg }} kg
+      {{ getUpliftAsKg }} kg
+    </div>
+
+    <div
+      v-if="displayUnit === 'lbs'"
+      class="tm_total-kg">
+      {{ getUpliftAsLbs }} lbs
     </div>
 
     <div
       class="tm_total-liter">
-      {{ calculateTotalLiter }} liter
+      {{ getUpliftAsLiter }} liter
     </div>
 
   </div>
@@ -26,6 +29,7 @@
 <script>
 import sourceData from '@/data';
 import ShowFuelTanks from './ShowFuelTanks.vue';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
 
@@ -39,47 +43,18 @@ export default {
     };
   },
 
-  props: {
-    aircraftType: {
-      required: true,
-      type: String,
-    },
-    uplift: {
-      required: true,
-      type: Number,
-    },
-    convertionUnit: {
-      required: true,
-      type: String,
-    },
-    sg: {
-      required: true,
-      type: String,
-    },
-  },
-
   computed: {
-    sgAsFactor() {
-      return Number(this.sg) / 1000; 
-    },
-    calculateTotalLiter() {
-      let liter;
-      if (this.convertionUnit === 'kg') {
-        liter = this.uplift / this.sgAsFactor;
-      } else {
-        liter = this.uplift * this.unitTypes[this.convertionUnit].factor;
-      }
-      return Math.round(liter);
-    },
-    calculateTotalKg() {
-      let kg;
-      if (this.convertionUnit === 'kg') {
-        kg = this.uplift;
-      } else {
-        kg = this.calculateTotalLiter * this.sgAsFactor;
-      }
-      return Math.round(kg);
-    },
+    ...mapState([
+      'displayUnit',
+      'inputUnit',
+      'selectedUplift',
+      'selectedSg'
+    ]),
+    ...mapGetters([
+      'getUpliftAsLiter',
+      'getUpliftAsKg',
+      'getUpliftAsLbs',
+    ]),
   },
 };
 </script>

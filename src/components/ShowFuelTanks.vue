@@ -32,6 +32,7 @@
 <script>
 
 import sourceData from '@/data';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
 
@@ -42,8 +43,15 @@ export default {
   },
 
   computed: {
+    ...mapState([
+      'selectedAircraft'
+    ]),
+    ...mapGetters({
+      sg: 'getSgAsFactor',
+      selectedUplift: 'getUpliftAsKg'
+    }),
     aircraft() {
-      return sourceData.aircraftType[this.aircraftType];
+      return sourceData.aircraftType[this.selectedAircraft];
     },
     fuelCapacityAsKg() {
       const { left, right, center } = this.aircraft;
@@ -59,14 +67,14 @@ export default {
       const wingCapacity = left + right;
       const totalCapacity = wingCapacity + center;
       
-      if (this.fuelUplift > wingCapacity && this.fuelUplift < totalCapacity) {
+      if (this.selectedUplift > wingCapacity && this.selectedUplift < totalCapacity) {
         this.centerOverflow = false;
         return {
           left,
           right,
-          center: this.fuelUplift - wingCapacity,
+          center: this.selectedUplift - wingCapacity,
         };
-      } else if (this.fuelUplift >= totalCapacity) {
+      } else if (this.selectedUplift >= totalCapacity) {
         this.centerOverflow = true;
         return {
           left,
@@ -76,8 +84,8 @@ export default {
       }
       this.centerOverflow = false;
       return {
-        left: this.fuelUplift / 2,
-        right: this.fuelUplift / 2,
+        left: this.selectedUplift / 2,
+        right: this.selectedUplift / 2,
         center: 0,
       };
     },
@@ -95,22 +103,6 @@ export default {
       return `${(this.fillTanks[tank] / this.fuelCapacityAsKg[tank] * 100).toFixed(0)}%`;
     },
   },
-
-  props: {
-    aircraftType: {
-      required: true,
-      type: String,
-    },
-    fuelUplift: {
-      required: true,
-      type: Number,
-    },
-    sg: {
-      required: true,
-      type: Number
-    }
-  },
-
 };
 </script>
 

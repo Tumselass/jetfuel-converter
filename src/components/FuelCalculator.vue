@@ -3,39 +3,23 @@
   <div>
 
     <div class="tm_card">
-      <SelectAircraft
-        @selectedAircraftKey="setSelectedAircraft"
-        :defaultAircraft="selectedAircraft"
-        />
+      <SelectAircraft />
     </div>
 
     <div class="tm_card">
-      <SelectUplift
-        @selectedUplift="setSelectedUplift"
-        />
+      <SelectUplift />
 
     <hr>
 
-      <SelectUnit
-        @selectedUnit="setSelectedUnit"
-        :defaultUnit="selectedConversionUnit"
-        />
+      <SelectUnit />
     </div>
 
     <div class="tm_card">
-      <ShowTotalFuel
-        :sg="selectedSG"
-        :uplift="selectedUplift"
-        :convertionUnit="selectedConversionUnit"
-        :aircraftType="selectedAircraft"
-        />
+      <ShowTotalFuel />
     </div>
 
     <div class="tm_card">
-      <SelectSG
-        @selectedSG="setSelectedSG"
-        :defaultSG="selectedSG"
-        />
+      <SelectSG />
     </div>
 
     <p class="tm_disclamer">
@@ -44,6 +28,8 @@
       <br>
       v.{{ version }}
       </p>
+    
+    <BottomMenu />
 
   </div>
 
@@ -51,15 +37,15 @@
 
 <script>
 
-import {version} from '../../package.json';
-import helpers from '@/helpers/validation';
+import setLocalStorage from '../mixins/setLocalStorage';
+import setCSSThemeColor from '../mixins/setCSSThemeColor';
+import { version } from '../../package.json';
 import SelectAircraft from './SelectAircraft';
 import SelectUplift from './SelectUplift';
 import SelectUnit from './SelectUnit';
 import ShowTotalFuel from './ShowTotalFuel';
 import SelectSG from './SelectSG';
-
-const { validateString, validateNumber } = helpers;
+import BottomMenu from './BottomMenu';
 
 export default {
 
@@ -69,67 +55,25 @@ export default {
     SelectUnit,
     ShowTotalFuel,
     SelectSG,
+    BottomMenu
   },
+
+  mixins: [
+    setLocalStorage,
+    setCSSThemeColor
+  ],
 
   data() {
     return {
-      hasLocalStorage: undefined,
-      selectedAircraft: localStorage.getItem('aircraft') || 'b737ng',
-      selectedConversionUnit: localStorage.getItem('unit') || 'liter',
-      selectedUplift: 0,
-      selectedSG: localStorage.getItem('sg') || '804',
       version: version
     };
   },
 
-  beforeMount() {
-    if (typeof (Storage) !== 'undefined') {
-      this.hasLocalStorage = true;
-    } else {
-      this.hasLocalStorage = false;
+  created() {
+    if (localStorage.themeColor) {
+      this.setCSSThemeColor(JSON.parse(localStorage.getItem('themeColor')))
     }
   },
-
-  methods: {
-    setLocalStorage(key, value) {
-      if (this.hasLocalStorage) {
-        localStorage.setItem(key, value);
-      }
-    },
-
-    sgAsFactor() {
-      return parseInt(this.selectedSG) / 1000;
-    },
-
-    setSelectedAircraft(key) {
-      if (validateString(key)) {
-        this.selectedAircraft = key;
-        this.setLocalStorage('aircraft', key);
-      }
-    },
-
-    setSelectedUplift(uplift) {
-      if (validateNumber(uplift)) {
-        this.selectedUplift = uplift;
-        this.setLocalStorage('uplift', uplift);
-      }
-    },
-
-    setSelectedUnit(key) {
-      if (validateString(key)) {
-        this.selectedConversionUnit = key;
-        this.setLocalStorage('unit', key);
-      }
-    },
-
-    setSelectedSG(sg) {
-      if (validateString(sg)) {
-        this.selectedSG = sg;
-        this.setLocalStorage('sg', sg);
-      }
-    },
-  },
-
 };
 </script>
 

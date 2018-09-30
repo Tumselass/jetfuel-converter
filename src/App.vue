@@ -21,7 +21,13 @@ export default {
   --main-text-color-muted: rgba(129, 129, 129, 0.6);
   --main-color: #40c9a2;
   --accent-color: #77cbb9;
-  --selected-bg-color: rgba(119, 203, 185, 0.3);
+  --selected-bg-color: #d6efea;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
 }
 
 body {
@@ -55,5 +61,12 @@ hr {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   line-height: 1.5rem;
+}
+
+.tm_btn-reset {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
 }
 </style>
