@@ -37,9 +37,7 @@
 
 <script>
 
-import setLocalStorage from '../mixins/setLocalStorage';
 import setCSSThemeColor from '../mixins/setCSSThemeColor';
-import { version } from '../../package.json';
 import SelectAircraft from './SelectAircraft';
 import SelectUplift from './SelectUplift';
 import SelectUnit from './SelectUnit';
@@ -59,19 +57,20 @@ export default {
   },
 
   mixins: [
-    setLocalStorage,
     setCSSThemeColor
   ],
 
   data() {
     return {
-      version: version
+      version: this.$store.state.version
     };
   },
-
+  
+  // change theme according to localstorage retreeved through the store
   created() {
-    if (localStorage.themeColor) {
-      this.setCSSThemeColor(JSON.parse(localStorage.getItem('themeColor')))
+    const { selectedTheme } = this.$store.state;
+    if (selectedTheme !== null) {
+      this.setCSSThemeColor(selectedTheme);
     }
   },
 };
@@ -93,6 +92,7 @@ export default {
   font-size: 0.8rem;
   line-height: 1.2rem;
   margin-top: 2rem;
+  padding-bottom: 75px;
 }
 
 .tm_disclamer-heading {

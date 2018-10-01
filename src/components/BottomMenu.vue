@@ -1,8 +1,10 @@
 <template>
   <nav id="tm_bottom-nav">
-    <div v-show="activeElement.one" class="tm_bottom-nav--panel">
-      <BottomThemeMenu />
-    </div>
+    <transition name="fade"> 
+      <div v-show="activeElement.one" class="tm_bottom-nav--panel">
+        <BottomThemeMenu />
+      </div>
+    </transition>
     <div v-show="activeElement.two" class="tm_bottom-nav--panel">
       <BottomUnitMenu />
     </div>
@@ -139,6 +141,14 @@ export default {
 .tm_bottom-nav-element > svg {
   fill: var(--selected-bg-color);
   margin: 0 auto;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
 

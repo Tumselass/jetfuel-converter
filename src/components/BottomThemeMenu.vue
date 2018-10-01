@@ -15,27 +15,25 @@
 
 <script>
 import sourceData from '@/data';
-import setLocalStorage from '../mixins/setLocalStorage';
 import setCSSThemeColor from '../mixins/setCSSThemeColor';
 
 export default {
 
   mixins: [
-    setLocalStorage,
     setCSSThemeColor
   ],
   
   data() {
     return {
       themeColors: sourceData.theme.colors,
-      selectedTheme: JSON.parse(localStorage.getItem('themeColor')) || sourceData.theme.colors[0]
+      selectedTheme: this.$store.state.selectedTheme || sourceData.theme.colors[0]
     }
   },
 
   methods: {
     changeTheme(theme) {
       this.setCSSThemeColor(theme);
-      this.setLocalStorage('themeColor', JSON.stringify(theme));
+      this.$store.commit('setSelectedTheme', theme);
       this.selectedTheme = theme;
     },
     activeTheme(color) {
@@ -43,6 +41,9 @@ export default {
         return true;
       }
       return false;
+    },
+    defaultTheme() {
+
     } 
   },
 
@@ -62,7 +63,19 @@ export default {
 }
 
 .tm_active-theme {
-  box-shadow: 0 0 0 4px #ccc;
+  transform: scale(1.2);
+  transition: all 0.2s ease-in;
+}
+
+.tm_active-theme::after {
+  content: "";
+  display: block;
+  height: 8px;
+  width: 4px;
+  transform: rotate(45deg);
+  border: solid var(--selected-bg-color);
+  border-width: 0 2px 2px 0;
+  margin: -6px auto;
 }
 </style>
 

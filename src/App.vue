@@ -9,6 +9,10 @@
 import FuelCalculator from '@/components/FuelCalculator';
 
 export default {
+  // init store from local storage
+  beforeCreate() {
+    this.$store.commit('setInitialState');
+  },
   components: {
     FuelCalculator,
   },

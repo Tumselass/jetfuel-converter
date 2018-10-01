@@ -1,27 +1,30 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-
-const myPlugin = store => {
-  // called when the store is initialized
-  store.subscribe((mutation, state) => {
-    // called after every mutation.
-    // The mutation comes in the format of `{ type, payload }`.
-    localStorage.setItem('store', JSON.stringify(state));
-  })
-}
+import { setLocalStorage } from './plugins';
+import { version } from '../../package.json';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  plugins: [myPlugin],
+  plugins: [setLocalStorage],
   state: {
-    inputUnit: JSON.parse(localStorage.getItem('unit')) || {'.key': 'liter', name: 'Liter', factor: 1},
+    inputUnit: {'.key': 'liter', name: 'Liter', factor: 1},
     displayUnit: 'kg',
-    selectedAircraft: localStorage.getItem('aircraft') || 'b737ng',
+    selectedAircraft: 'b737ng',
     selectedUplift: 0,
-    selectedSg: localStorage.getItem('sg') || '804'
+    selectedSg: '804',
+    selectedTheme: null,
+    version: version
   },
   mutations: {
+    setInitialState(state) {
+      if (!localStorage.getItem('store')) return;
+
+      const localStore = JSON.parse(localStorage.getItem('store'));
+      if (localStore.version === state.version) {
+        this.replaceState(localStore)
+      }
+    },
     setDisplayUnit(state, unit) {
       this.state.displayUnit = unit;
     },
@@ -36,6 +39,9 @@ export default new Vuex.Store({
     },
     setSelectedSg(state, sg) {
       this.state.selectedSg = sg;
+    },
+    setSelectedTheme(state, theme) {
+      this.state.selectedTheme = theme;
     }
   },
   getters: {

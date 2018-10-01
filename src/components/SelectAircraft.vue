@@ -24,14 +24,9 @@
 <script>
 
 import sourceData from '@/data';
-import setLocalStorage from '../mixins/setLocalStorage';
 import { mapState, mapMutations } from 'vuex';
 
 export default {
-
-  mixins: [
-    setLocalStorage
-  ],
 
   data() {
     return {
@@ -46,7 +41,6 @@ export default {
     // Using value instead og v-model to have one option preselected
     saveSelectedAircraft(e) {
       this.setSelectedAircraft(e.target.value);
-      this.setLocalStorage('aircraft', e.target.value);
     },
   },
 

@@ -22,13 +22,8 @@
 <script>
 
 import sourceData from '@/data';
-import setLocalStorage from '../mixins/setLocalStorage';
 
 export default {
-
-  mixins: [
-    setLocalStorage
-  ],
 
   data() {
     return {
@@ -40,8 +35,6 @@ export default {
   methods: {
     saveSelectedSG() {
       this.$store.commit('setSelectedSg', this.selectedSG);
-      this.setLocalStorage('sg', this.selectedSG);
-      
     },
   },
 };

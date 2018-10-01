@@ -37,13 +37,8 @@
 <script>
 
 import sourceData from '@/data';
-import setLocalStorage from '../mixins/setLocalStorage';
 
 export default {
-
-  mixins: [
-    setLocalStorage
-  ],
 
   data() {
     return {
@@ -55,7 +50,6 @@ export default {
   watch: {
     selectedUnit() {
       this.$store.commit('setInputUnit', this.unitTypes[this.selectedUnit]);
-      this.setLocalStorage('unit', JSON.stringify(this.unitTypes[this.selectedUnit]));
     }
   },
 
