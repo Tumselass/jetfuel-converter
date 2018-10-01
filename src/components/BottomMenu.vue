@@ -1,16 +1,12 @@
 <template>
   <nav id="tm_bottom-nav">
     <transition name="fade"> 
-      <div v-show="activeElement.one" class="tm_bottom-nav--panel">
-        <BottomThemeMenu />
+      <div v-show="toggleMenuPanel" class="tm_bottom-nav--panel">
+        <BottomThemeMenu v-show="activeElement.one" />
+        <BottomUnitMenu v-show="activeElement.two" />
+        <span v-show="activeElement.three">Login panel</span> 
       </div>
     </transition>
-    <div v-show="activeElement.two" class="tm_bottom-nav--panel">
-      <BottomUnitMenu />
-    </div>
-    <div v-show="activeElement.three" class="tm_bottom-nav--panel">
-      Login panel
-    </div>
     <button
       class="tm_bottom-nav-element"
       :class="{'tm_bottom-nav-element--active': activeElement.one}"
@@ -77,6 +73,14 @@ export default {
         button[el] = false;
       }
       button[id] = true;
+    }
+  },
+
+  computed: {
+    toggleMenuPanel() {
+      return Object.values(this.activeElement).some( v => {
+        return v === true;
+      }) 
     }
   }
   
