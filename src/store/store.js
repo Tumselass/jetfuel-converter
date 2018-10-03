@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   plugins: [setLocalStorage],
   state: {
-    inputUnit: {'.key': 'liter', name: 'Liter', factor: 1},
+    inputUnit: { '.key': 'liter', name: 'Liter', factor: 1 },
     displayUnit: 'kg',
     selectedAircraft: 'b737ng',
     selectedUplift: 0,
@@ -22,7 +22,7 @@ export default new Vuex.Store({
 
       const localStore = JSON.parse(localStorage.getItem('store'));
       if (localStore.version === state.version) {
-        this.replaceState(localStore)
+        this.replaceState(localStore);
       }
     },
     setDisplayUnit(state, unit) {

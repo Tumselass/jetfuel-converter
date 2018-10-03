@@ -1,56 +1,60 @@
 <template>
-  <nav id="tm_bottom-nav">
+  <div>
     <transition name="fade"> 
       <div v-show="toggleMenuPanel" class="tm_bottom-nav--panel">
         <BottomThemeMenu v-show="activeElement.one" />
         <BottomUnitMenu v-show="activeElement.two" />
-        <span v-show="activeElement.three">Login panel</span> 
+        <BottomLoginMenu v-show="activeElement.three" /> 
       </div>
     </transition>
-    <button
-      class="tm_bottom-nav-element"
-      :class="{'tm_bottom-nav-element--active': activeElement.one}"
-      @click="toggleActiveMenu('one')"
+
+    <nav id="tm_bottom-nav">
+    
+      <button
+        class="tm_bottom-nav-element"
+        :class="{'tm_bottom-nav-element--active': activeElement.one}"
+        @click="toggleActiveMenu('one')"
+        >
+        <ThemeIcon />
+        <span>Theme</span>
+      </button>
+      <button 
+        class="tm_bottom-nav-element"
+        :class="{'tm_bottom-nav-element--active': activeElement.two}"
+        @click="toggleActiveMenu('two')"
       >
-      <ThemeIcon />
-      <span>Theme</span>
-    </button>
-    <button 
-      class="tm_bottom-nav-element"
-      :class="{'tm_bottom-nav-element--active': activeElement.two}"
-      @click="toggleActiveMenu('two')"
-    >
-      <UnitIcon />
-      <span>Unit</span>
-    </button>
-    <button 
-      class="tm_bottom-nav-element"
-      :class="{'tm_bottom-nav-element--active': activeElement.three}"
-      @click="toggleActiveMenu('three')"
-    >
-      
-      <UserIcon />
-      <span>Login</span>
-    </button>
-  </nav>
+        <UnitIcon />
+        <span>Unit</span>
+      </button>
+      <button 
+        class="tm_bottom-nav-element"
+        :class="{'tm_bottom-nav-element--active': activeElement.three}"
+        @click="toggleActiveMenu('three')"
+      >
+        
+        <UserIcon />
+        <span>Login</span>
+      </button>
+    </nav>
+  </div>
 </template>
 
 <script>
-
 import ThemeIcon from './icons/ThemeIcon';
 import UnitIcon from './icons/UnitIcon';
 import UserIcon from './icons/UserIcon';
 import BottomThemeMenu from './BottomThemeMenu';
 import BottomUnitMenu from './BottomUnitMenu';
+import BottomLoginMenu from './BottomLoginMenu';
 
 export default {
-
   components: {
     ThemeIcon,
     UnitIcon,
     UserIcon,
     BottomThemeMenu,
-    BottomUnitMenu
+    BottomUnitMenu,
+    BottomLoginMenu
   },
 
   data() {
@@ -60,14 +64,14 @@ export default {
         two: false,
         three: false
       }
-    }
+    };
   },
 
   methods: {
     toggleActiveMenu(id) {
       const button = this.activeElement;
       if (button[id]) {
-        return button[id] = false;
+        return (button[id] = false);
       }
       for (let el in button) {
         button[el] = false;
@@ -78,13 +82,12 @@ export default {
 
   computed: {
     toggleMenuPanel() {
-      return Object.values(this.activeElement).some( v => {
+      return Object.values(this.activeElement).some(v => {
         return v === true;
-      }) 
+      });
     }
   }
-  
-}
+};
 </script>
 
 <style scoped>
@@ -102,16 +105,19 @@ export default {
   left: 0;
   height: 54px;
   width: 100vw;
+  z-index: 1000;
 }
 
 .tm_bottom-nav--panel {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  height: 54px;
+  position: fixed;
+  height: 540px;
   width: 100vw;
-  top: -54px;
+  /* top: calc(100vh - 108px); */
+  top: 0;
+  /* margin-top: calc(100vh - 108px); */
   left: 0;
   color: var(--main-text-color);
   background-color: var(--selected-bg-color);
@@ -132,7 +138,7 @@ export default {
 
 .tm_bottom-nav-element--active::before {
   position: absolute;
-  content: "";
+  content: '';
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
@@ -149,10 +155,11 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s;
+  transition: transform 0.2s linear;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+  transform: translateY(100%);
+  will-change: transform;
 }
 </style>
 

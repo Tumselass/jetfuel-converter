@@ -22,17 +22,13 @@ import { mapState, mapMutations } from 'vuex';
 
 export default {
   methods: {
-    ...mapMutations([
-      'setDisplayUnit'
-    ])
+    ...mapMutations(['setDisplayUnit'])
   },
 
   computed: {
-    ...mapState([
-      'displayUnit'
-    ])
+    ...mapState(['displayUnit'])
   }
-}
+};
 </script>
 
 <style scoped>
@@ -47,6 +43,7 @@ export default {
   font-size: 1.2rem;
   height: 100%;
   width: 100%;
+  cursor: pointer;
 }
 
 .tm_display-unit-btn--active {
