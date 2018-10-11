@@ -1,10 +1,13 @@
 <template>
   <div>
     <transition name="fade"> 
-      <div v-show="toggleMenuPanel" class="tm_bottom-nav--panel">
+      <div 
+        v-show="toggleMenuPanel" 
+        class="tm_bottom-nav--panel tm_bottom-nav-panel-small"
+        >
         <BottomThemeMenu v-show="activeElement.one" />
         <BottomUnitMenu v-show="activeElement.two" />
-        <BottomLoginMenu v-show="activeElement.three" /> 
+        <span v-show="activeElement.three">Nothing here yet</span> 
       </div>
     </transition>
 
@@ -26,7 +29,8 @@
         <UnitIcon />
         <span>Unit</span>
       </button>
-      <button 
+      <button
+        disabled 
         class="tm_bottom-nav-element"
         :class="{'tm_bottom-nav-element--active': activeElement.three}"
         @click="toggleActiveMenu('three')"
@@ -45,7 +49,6 @@ import UnitIcon from './icons/UnitIcon';
 import UserIcon from './icons/UserIcon';
 import BottomThemeMenu from './BottomThemeMenu';
 import BottomUnitMenu from './BottomUnitMenu';
-import BottomLoginMenu from './BottomLoginMenu';
 
 export default {
   components: {
@@ -53,8 +56,7 @@ export default {
     UnitIcon,
     UserIcon,
     BottomThemeMenu,
-    BottomUnitMenu,
-    BottomLoginMenu
+    BottomUnitMenu
   },
 
   data() {
@@ -113,15 +115,24 @@ export default {
   align-items: center;
   justify-content: center;
   position: fixed;
-  height: 540px;
   width: 100vw;
-  /* top: calc(100vh - 108px); */
   top: 0;
-  /* margin-top: calc(100vh - 108px); */
   left: 0;
   color: var(--main-text-color);
   background-color: var(--selected-bg-color);
   box-shadow: inset 0px -2px 6px 0px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+}
+
+.tm_bottom-nav-panel-small {
+  height: 54px;
+  margin-top: calc(100vh - 108px);
+}
+
+.tm_bottom-nav--panel-full {
+  height: calc(100vh - 54px);
+  margin-top: 0;
+  transition: margin 0.2s linear;
 }
 
 .tm_bottom-nav-element {
@@ -157,7 +168,8 @@ export default {
 .fade-leave-active {
   transition: transform 0.2s linear;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter,
+.fade-leave-to {
   transform: translateY(100%);
   will-change: transform;
 }

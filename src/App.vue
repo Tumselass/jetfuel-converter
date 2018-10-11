@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 import FuelCalculator from '@/components/FuelCalculator';
 
 export default {
@@ -14,8 +13,8 @@ export default {
     this.$store.commit('setInitialState');
   },
   components: {
-    FuelCalculator,
-  },
+    FuelCalculator
+  }
 };
 </script>
 
@@ -58,8 +57,13 @@ hr {
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   font-size: 1.3rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
