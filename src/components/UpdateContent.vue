@@ -1,18 +1,20 @@
 <template>
-  <div
-    v-if="updateExists"
-    class="tm_container"
-  >
-    <p class="tm_text">A new version is available!</p>
-    <button
-      @click="refreshApp"
-      class="tm_refresh-button"
-    >Refresh</button>
-    <button
-      @click="dismiss"
-      class="tm_dismiss-button"
-    >Dismiss</button>
-  </div>
+  <transition name="fade">
+    <div
+      v-if="updateExists"
+      class="tm_container"
+    >
+      <p class="tm_text">A new version is available!</p>
+      <button
+        @click="refreshApp"
+        class="tm_refresh-button"
+      >Refresh</button>
+      <button
+        @click="dismiss"
+        class="tm_dismiss-button"
+      >Dismiss</button>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -54,6 +56,19 @@ export default {
 </script>
 
 <style scoped>
+.fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.fade-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.fade-enter,
+.fade-leave-to {
+  transform: translateY(-200px);
+}
+
 .tm_container {
   margin: 20px auto;
   width: 95%;
