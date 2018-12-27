@@ -1,53 +1,23 @@
 <template>
   <div id="app">
-    <button
-      v-if="updateExists"
-      @click="refreshApp"
-    >New version available! Click to update</button>
+    <UpdateContent/>
     <FuelCalculator/>
   </div>
 </template>
 
 <script>
 import FuelCalculator from '@/components/FuelCalculator';
+import UpdateContent from '@/components/UpdateContent';
 
 export default {
   components: {
-    FuelCalculator
+    FuelCalculator,
+    UpdateContent
   },
 
-  data() {
-    return {
-      refreshing: false,
-      registration: null,
-      updateExists: false
-    };
-  },
   // init store from local storage
   beforeCreate() {
     this.$store.commit('setInitialState');
-  },
-  created() {
-    document.addEventListener('swUpdated', this.showRefreshUI, { once: true });
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (this.refreshing) return;
-      this.refreshing = true;
-      window.location.reload();
-    });
-  },
-
-  methods: {
-    showRefreshUI(e) {
-      this.registration = e.detail;
-      this.updateExists = true;
-    },
-    refreshApp() {
-      this.updateExists = false;
-      if (!this.registration || !this.registration.waiting) {
-        return;
-      }
-      this.registration.waiting.postMessage('skipWaiting');
-    }
   }
 };
 </script>
