@@ -98,6 +98,14 @@ export default {
     },
   },
 
+  watch: {
+    centerOverflow(newValue) {
+      if (newValue === true) {
+        window.navigator.vibrate(200);
+      }
+    }
+  },
+
   methods: {
     calculatePercent(tank) {
       return `${(this.fillTanks[tank] / this.fuelCapacityAsKg[tank] * 100).toFixed(0)}%`;
